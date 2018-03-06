@@ -1,0 +1,398 @@
+﻿@model WeatherApp.Models.WeatherData
+
+@{
+    /**/
+
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Forecast Weather Data</h2>
+ vcxv
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+        <h4>General Information</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Location.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Location.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Location.Type)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Location.Type)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Location.Country)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Location.Country)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Location.Timezone)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Location.Timezone)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Location.LocationInfo.Altitude)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Location.LocationInfo.Altitude)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Location.LocationInfo.Latitude)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Location.LocationInfo.Latitude)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Location.LocationInfo.Longitude)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Location.LocationInfo.Longitude)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Location.LocationInfo.Geobase)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Location.LocationInfo.Geobase)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Location.LocationInfo.GeobaseId)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Location.LocationInfo.GeobaseId)
+            </dd>
+        </dl>
+    </div>
+
+    <div>
+        <h4>Forecast Information</h4>
+        @foreach (var item in Model.Forecast.ForecastTime)
+        {
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => item.From)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => item.From)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => item.To)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => item.To)
+                </dd>
+            </dl>
+            <table style="margin-left: 50px;">
+                <thead>
+                    <tr>
+                        <td>@Html.Label("Category")</td>
+                        <td>@Html.Label("Parameter")</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding-right: 50px; padding-bottom: 10px">
+                            Forecast Symbol Information
+                        </td>
+                        <td style="padding-bottom: 10px">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td style="width: 100px;">
+                                            @Html.DisplayNameFor(model => item.ForecastSymbol.Name)
+                                        </td>
+                                        <td style="width: 500px;">
+                                            @Html.DisplayFor(model => item.ForecastSymbol.Name)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 100px;">
+                                            @Html.DisplayNameFor(model => item.ForecastSymbol.Number)
+                                        </td>
+                                        <td style="width: 500px;">
+                                            @Html.DisplayFor(model => item.ForecastSymbol.Number)
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    @* Precipitation *@
+
+                    <tr>
+                        <td style="padding-right: 50px; padding-bottom:10px">
+                            Forecast Precipitation Information
+                        </td>
+                        <td style="padding-bottom:10px">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td style="width: 100px;">
+                                            @Html.DisplayNameFor(model => item.ForecastPrecipitation.Unit)
+                                        </td>
+                                        <td style="width: 500px;">
+                                            @Html.DisplayFor(model => item.ForecastPrecipitation.Unit)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 100px;">
+                                            @Html.DisplayNameFor(model => item.ForecastPrecipitation.Value)
+                                        </td>
+                                        <td style="width: 500px;">
+                                            @Html.DisplayFor(model => item.ForecastPrecipitation.Value)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 100px;">
+                                            @Html.DisplayNameFor(model => item.ForecastPrecipitation.Type)
+                                        </td>
+                                        <td style="width: 500px;">
+                                            @Html.DisplayFor(model => item.ForecastPrecipitation.Type)
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+
+                    @*  Wind Direction *@
+
+                    <tr>
+                        <td style="padding-right: 50px; padding-bottom:10px">
+                            Forecast Wind Direction Information
+                        </td>
+                        <td style="padding-bottom:10px">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td style="width: 100px;">
+                                            @Html.DisplayNameFor(model => item.ForecastWindDirection.Deg)
+                                        </td>
+                                        <td style="width: 500px;">
+                                            @Html.DisplayFor(model => item.ForecastWindDirection.Deg)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 100px;">
+                                            @Html.DisplayNameFor(model => item.ForecastWindDirection.Code)
+                                        </td>
+                                        <td style="width: 500px;">
+                                            @Html.DisplayFor(model => item.ForecastWindDirection.Code)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 100px;">
+                                            @Html.DisplayNameFor(model => item.ForecastWindDirection.Name)
+                                        </td>
+                                        <td style="width: 500px;">
+                                            @Html.DisplayFor(model => item.ForecastWindDirection.Name)
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+
+                    @*  Wind Speed *@
+
+                    <tr>
+                        <td style="padding-right: 50px;padding-bottom:10px">
+                            Forecast Wind Speed Information
+                        </td>
+                        <td style="padding-bottom:10px">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td style="width: 100px;">
+                                            @Html.DisplayNameFor(model => item.ForecastWindSpeed.Mps)
+                                        </td>
+                                        <td style="width: 500px;">
+                                            @Html.DisplayFor(model => item.ForecastWindSpeed.Mps)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 100px;">
+                                            @Html.DisplayNameFor(model => item.ForecastWindSpeed.Name)
+                                        </td>
+                                        <td style="width: 500px;">
+                                            @Html.DisplayFor(model => item.ForecastWindSpeed.Name)
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+
+                    @*  Temperature *@
+
+                    <tr>
+                        <td style="padding-right: 50px;padding-bottom:10px">
+                            Forecast Temperature Information
+                        </td>
+                        <td style="padding-bottom:10px">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td style="width: 100px;">
+                                            @Html.DisplayNameFor(model => item.ForecastTemperature.Unit)
+                                        </td>
+                                        <td style="width: 500px;">
+                                            @Html.DisplayFor(model => item.ForecastTemperature.Unit)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 100px;">
+                                            @Html.DisplayNameFor(model => item.ForecastTemperature.Value)
+                                        </td>
+                                        <td style="width: 500px;">
+                                            @Html.DisplayFor(model => item.ForecastTemperature.Value)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 100px;">
+                                            @Html.DisplayNameFor(model => item.ForecastTemperature.Min)
+                                        </td>
+                                        <td style="width: 500px;">
+                                            @Html.DisplayFor(model => item.ForecastTemperature.Min)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 100px;">
+                                            @Html.DisplayNameFor(model => item.ForecastTemperature.Max)
+                                        </td>
+                                        <td style="width: 500px;">
+                                            @Html.DisplayFor(model => item.ForecastTemperature.Max)
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+
+                    @*  Pressure *@
+
+                    <tr>
+                        <td style="padding-right: 50px;padding-bottom:10px">
+                            Forecast Pressure Information
+                        </td>
+                        <td style="padding-bottom:10px">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td style="width: 100px;">
+                                            @Html.DisplayNameFor(model => item.ForecastPressure.Unit)
+                                        </td>
+                                        <td style="width: 500px;">
+                                            @Html.DisplayFor(model => item.ForecastTemperature.Unit)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 100px;">
+                                            @Html.DisplayNameFor(model => item.ForecastPressure.Value)
+                                        </td>
+                                        <td style="width: 500px;">
+                                            @Html.DisplayFor(model => item.ForecastPressure.Value)
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+
+                    @*  Humidity *@
+
+                    <tr>
+                        <td style="padding-right: 50px;padding-bottom:10px">
+                            Forecast Humidity Information
+                        </td>
+                        <td style="padding-bottom:10px">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td style="width: 100px;">
+                                            @Html.DisplayNameFor(model => item.ForecastHumidity.Unit)
+                                        </td>
+                                        <td style="width: 500px;">
+                                            @Html.DisplayFor(model => item.ForecastHumidity.Unit)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 100px;">
+                                            @Html.DisplayNameFor(model => item.ForecastHumidity.Value)
+                                        </td>
+                                        <td style="width: 500px;">
+                                            @Html.DisplayFor(model => item.ForecastHumidity.Value)
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+
+                    @*  Clouds *@
+
+                    <tr>
+                        <td style="padding-right: 50px;padding-bottom:10px">
+                            Forecast Clouds Information
+                        </td>
+                        <td style="padding-bottom:10px">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td style="width: 100px;">
+                                            @Html.DisplayNameFor(model => item.ForecastClouds.Unit)
+                                        </td>
+                                        <td style="width: 500px;">
+                                            @Html.DisplayFor(model => item.ForecastClouds.Unit)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 100px;">
+                                            @Html.DisplayNameFor(model => item.ForecastClouds.All)
+                                        </td>
+                                        <td style="width: 500px;">
+                                            @Html.DisplayFor(model => item.ForecastClouds.All)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 100px;">
+                                            @Html.DisplayNameFor(model => item.ForecastClouds.Value)
+                                        </td>
+                                        <td style="width: 500px;">
+                                            @Html.DisplayFor(model => item.ForecastClouds.Value)
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        }
+    </div>
+}
+
+
